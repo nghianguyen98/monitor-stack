@@ -1,0 +1,72 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Up Targets",
+      "datasource": {
+        "type": "prometheus",
+        "uid": null
+      },
+      "targets": [
+        {
+          "expr": "sum(up)"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "type": "graph",
+      "title": "Prometheus Scrape Duration (s)",
+      "datasource": {
+        "type": "prometheus",
+        "uid": null
+      },
+      "targets": [
+        {
+          "expr": "rate(prometheus_target_scrapes_sampled_scrapes_total[5m])"
+        }
+      ],
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": [
+    "sample"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timezone": "",
+  "title": "Infra Overview",
+  "version": 1
+}

@@ -1,0 +1,11 @@
+groups:
+  - name: basic-health
+    rules:
+      - alert: PrometheusTargetDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Target down ({{ $labels.job }})"
+          description: "{{ $labels.instance }} is not reachable."

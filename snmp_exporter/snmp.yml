@@ -1,0 +1,10 @@
+# Minimal SNMP Exporter config to get started.
+# For real devices, extend modules and OIDs as needed.
+modules:
+  if_mib:
+    walk:
+      - 1.3.6.1.2.1.2            # interfaces
+      - 1.3.6.1.2.1.31.1.1       # ifXTable
+    version: 2
+    auth:
+      community: public

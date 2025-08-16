@@ -1,0 +1,9 @@
+# Docker and local artifacts
+.env
+*.DS_Store
+**/__pycache__/
+**/.venv/
+**/.idea/
+**/.vscode/
+**/*.swp
+# Docker named volumes are not tracked here; containers create them at runtime
