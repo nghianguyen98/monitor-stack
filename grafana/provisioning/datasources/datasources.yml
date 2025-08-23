@@ -17,15 +17,3 @@ datasources:
       httpMode: POST
       timeInterval: 10s
     editable: true
-  - name: InfluxDB (Proxmox)
-    type: influxdb
-    access: proxy
-    url: http://influxdb:8086
-    database: ${INFLUXDB_PROXMOX_DB}
-    user: ${INFLUXDB_PROXMOX_USER}
-    secureJsonData:
-      password: ${INFLUXDB_PROXMOX_PASSWORD}
-    jsonData:
-      httpMode: POST
-      timeInterval: 10s
-    editable: true

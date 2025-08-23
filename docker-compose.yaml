@@ -56,10 +56,6 @@ services:
       - INFLUXDB_DB=${INFLUXDB_DB}
       - INFLUXDB_USER=${INFLUXDB_USER}
       - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
-# Proxmox Ifluxdb
-      - INFLUXDB_PROXMOX_DB=${INFLUXDB_PROXMOX_DB}
-      - INFLUXDB_PROXMOX_USER=${INFLUXDB_PROXMOX_USER}
-      - INFLUXDB_PROXMOX_PASSWORD=${INFLUXDB_PROXMOX_PASSWORD}
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
@@ -79,6 +75,7 @@ services:
     restart: unless-stopped
     ports:
       - "${INFLUXDB_PORT}:8086"
+      - 8089:8089/udp
     environment:
       - INFLUXDB_DB=${INFLUXDB_DB}
       - INFLUXDB_HTTP_AUTH_ENABLED=true
@@ -89,7 +86,7 @@ services:
       - INFLUXDB_USER_PASSWORD=${INFLUXDB_PASSWORD}
     volumes:
       - influxdb_data:/var/lib/influxdb
-      - ./influxdb/initdb:/docker-entrypoint-initdb.d:ro
+#     - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8086/ping"]
       interval: 30s
