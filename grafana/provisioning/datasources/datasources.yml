@@ -5,7 +5,7 @@ datasources:
     access: proxy
     url: http://prometheus:9090
     isDefault: true
-  - name: InfluxDB
+  - name: InfluxDB (Telegraf)
     type: influxdb
     access: proxy
     url: http://influxdb:8086
@@ -13,3 +13,19 @@ datasources:
     user: ${INFLUXDB_USER}
     secureJsonData:
       password: ${INFLUXDB_PASSWORD}
+    jsonData:
+      httpMode: POST
+      timeInterval: 10s
+    editable: true
+  - name: InfluxDB (Proxmox)
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    database: ${INFLUXDB_PROXMOX_DB}
+    user: ${INFLUXDB_PROXMOX_USER}
+    secureJsonData:
+      password: ${INFLUXDB_PROXMOX_PASSWORD}
+    jsonData:
+      httpMode: POST
+      timeInterval: 10s
+    editable: true

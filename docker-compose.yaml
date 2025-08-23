@@ -52,9 +52,14 @@ services:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
       - GF_USERS_ALLOW_SIGN_UP=false
+# Telegraf Influxdb
       - INFLUXDB_DB=${INFLUXDB_DB}
       - INFLUXDB_USER=${INFLUXDB_USER}
       - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
+# Proxmox Ifluxdb
+      - INFLUXDB_PROXMOX_DB=${INFLUXDB_PROXMOX_DB}
+      - INFLUXDB_PROXMOX_USER=${INFLUXDB_PROXMOX_USER}
+      - INFLUXDB_PROXMOX_PASSWORD=${INFLUXDB_PROXMOX_PASSWORD}
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
@@ -84,6 +89,7 @@ services:
       - INFLUXDB_USER_PASSWORD=${INFLUXDB_PASSWORD}
     volumes:
       - influxdb_data:/var/lib/influxdb
+      - ./influxdb/initdb:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8086/ping"]
       interval: 30s
