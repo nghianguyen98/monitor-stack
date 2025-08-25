@@ -20,7 +20,7 @@ A simple, reproducible monitoring stack with Docker Compose:
 ## Quick start
 
 ```bash
-git clone https://github.com/your-username/monitoring-stack.git
+git clone https://github.com/nghianguyen98/monitor-stack.git
 cd monitoring-stack
 
 cp .env.example .env   # edit if needed
